@@ -1,0 +1,60 @@
+{
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.parquet": "duckdb.dataFileViewer",
+        "*.csv": "duckdb.dataFileViewer",
+        "*.tsv": "duckdb.dataFileViewer",
+        "*.xlsx": "duckdb.dataFileViewer"
+    },
+    "duckdb.databases": [
+        {
+            "alias": "prf_2025",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\prf_2025.duckdb",
+            "attached": true
+        },
+        {
+            "alias": "prf_2023",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\prf_2023.duckdb",
+            "attached": true
+        },
+        {
+            "alias": "prf_2024",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\prf_2024.duckdb",
+            "attached": true
+        },
+        {
+            "alias": "acidentes_prf_historico",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\acidentes_prf_historico.duckdb",
+            "attached": true
+        },
+        {
+            "alias": "feriados",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\feriados.duckdb",
+            "attached": true
+        },
+        {
+            "alias": "limpeza_dados",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\limpeza_dados.duckdb",
+            "attached": true
+        },
+        {
+            "alias": "consultas_analiticas",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\consultas_analiticas.duckdb",
+            "attached": true
+        },
+        {
+            "alias": "nacional_2024",
+            "type": "file",
+            "path": "c:\\Users\\costa\\OneDrive\\Área de Trabalho\\Projeto PRF DUCKDB - final\\nacional_2024.duckdb",
+            "attached": false
+        }
+    ],
+    "duckdb.defaultDatabase": "acidentes_prf_historico"
+}
