@@ -1,0 +1,17 @@
+# Ambiente / editor
+.vscode/
+.idea/
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Binários e artefatos que podem ser regenerados a partir dos scripts em /sql
+# Descomente as linhas abaixo caso não queira versionar os bancos e os dados brutos
+# db/*.duckdb
+# data/raw/*.csv
+
+# Executáveis baixados manualmente (ex.: CLI do DuckDB)
+duckdb.exe
+duckdb
