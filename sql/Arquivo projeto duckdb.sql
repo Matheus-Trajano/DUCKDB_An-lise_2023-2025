@@ -194,6 +194,8 @@ ORDER BY
     ano ASC,
     total_acidentes ASC;
 
+SELECT * FROM acidentes_prf_historico.vw_historico_por_br;
+
 
 ----------------Cria uma view por BR com a base dos 3 anos ------------------
 CREATE OR REPLACE VIEW vw_historico_por_br AS
@@ -655,6 +657,8 @@ SELECT
 FROM
     prf_2024.acidentes_prf_2024;
 
+SELECT * FROM prf_2023.acidentes_prf_2023;
+
 
 ALTER TABLE prf_2025.acidentes_prf_2025
 ADD COLUMN IF NOT EXISTS fim_de_semana INTEGER;
@@ -663,7 +667,7 @@ ADD COLUMN IF NOT EXISTS fim_de_semana INTEGER;
 UPDATE prf_2025.acidentes_prf_2025
 SET
     fim_de_semana = CASE
-        WHEN LOWER(TRIM(dia_semana)) IN ('sexta-feira' 'sábado', 'domingo') THEN 1
+        WHEN LOWER(TRIM(dia_semana)) IN ('sexta-feira' ,'sábado', 'domingo') THEN 1
         ELSE 0
     END;
 
@@ -1225,15 +1229,26 @@ ORDER BY
 
 
 SELECT
-    *
+    SUM(CASE WHEN fim_de_semana = 0 THEN 1 ELSE 0 END) AS total_dias_uteis,
+    SUM(CASE WHEN fim_de_semana = 1 THEN 1 ELSE 0 END) AS total_fins_de_semana
 FROM
-    consultas_analiticas.vw_impacto_finais_semana;
+    prf_2023.acidentes_prf_2023;
+
+SELECT
+    SUM(CASE WHEN fim_de_semana = 0 THEN 1 ELSE 0 END) AS total_dias_uteis,
+    SUM(CASE WHEN fim_de_semana = 1 THEN 1 ELSE 0 END) AS total_fins_de_semana
+FROM
+    limpeza_dados.vw_2023_acidentes_enriquecida;
+SELECT * FROM limpeza_dados.vw_2024_acidentes_enriquecida;
+
+SELECT * FROM consultas_analiticas.vw_impacto_finais_semana;
+
 
 
 --- Pergunta:  O risco relativo de um acidente ser fatal muda consideravelmente aos finais de semana?
---- Resposta: Sim o percentual do dia util é de 6,86%, o do final de semana é de 8,72%. Isso apresenta um aumento de 
+--- Resposta: Sim o percentual do dia util é de 6,50%, o do final de semana é de 7,89%. Isso apresenta um aumento de 
 --- 27,11% no risco de um acidente set fatal em um final de semana.
---- como foi feito o calculo: (8,72% - 6,86%) / 6,86% = 0,2711 ou 27,11%
+--- como foi feito o calculo: (7,89% - 6,50%) / 6,50% = 0,2711 ou 21,38%
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 --NIVEL 2
@@ -1818,7 +1833,7 @@ FROM
 
 --- Pergunta: Qual é o estado (uf) que lidera esse triste ranking absoluto? E, nesse grupo restrito, qual é a principal causa relatada?
 --- Resposta: o estado que lidera é MG com 75 acidentes de altissima gravidade. 
----- CRIA UMA VIEW PARA ANALIS POR CAUSA DE ACIDENTE COM ALTISSIMA GRAVIDADE
+---- CRIA UMA VIEW PARA ANALISAR POR CAUSA DE ACIDENTE COM ALTISSIMA GRAVIDADE
 CREATE OR REPLACE VIEW consultas_analiticas.vw_altissima_gravidade_por_causa AS
 WITH
     historico AS (
